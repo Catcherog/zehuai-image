@@ -6,10 +6,11 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
+# 避免并发部署
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -24,14 +25,16 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci || npm install
 
       - name: Build
         run: npm run build
+        env:
+          VITE_BASE: /${{ github.event.repository.name }}/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
