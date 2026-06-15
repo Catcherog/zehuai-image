@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://Catcherg.github.io/zehuai-image/sitemap.xml
+Sitemap: https://Catcherog.github.io/zehuai-image/sitemap.xml
