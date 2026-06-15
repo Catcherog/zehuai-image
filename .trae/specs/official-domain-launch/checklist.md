@@ -1,0 +1,14 @@
+- [ ] 自定义域名已注册并完成实名认证
+- [ ] ICP 备案已通过审核
+- [ ] 自定义域名已绑定到 CloudBase 静态托管，HTTPS 证书有效
+- [ ] 通过自定义域名可正常访问官网，页面功能完整
+- [ ] 旧 CDN 域名访问自动跳转到自定义域名（如已配置）
+- [ ] index.html 中 og:url、JSON-LD url 使用自定义域名
+- [ ] sitemap.xml 中 URL 使用自定义域名
+- [ ] robots.txt 中 Sitemap URL 使用自定义域名
+- [ ] 网站已提交到百度搜索资源平台，sitemap 已提交
+- [ ] 网站已提交到 Google Search Console，sitemap 已提交
+- [ ] 网站已提交到 Bing Webmaster Tools
+- [ ] 百度统计代码已集成，后台可查看访问数据
+- [ ] 网站底部展示 ICP 备案号及工信部链接
+- [ ] 最新构建产物已部署到 CloudBase

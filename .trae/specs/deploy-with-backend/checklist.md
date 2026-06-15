@@ -1,0 +1,18 @@
+- [x] index.html 包含完整的 title、description、keywords meta 标签
+- [x] index.html 包含 Open Graph 标签（og:title、og:description、og:url、og:site_name、og:locale）
+- [x] index.html 包含 JSON-LD 结构化数据（LocalBusiness 类型）
+- [x] public/robots.txt 文件存在且配置正确
+- [x] public/sitemap.xml 文件存在且包含所有页面 URL
+- [x] CloudBase 环境已创建，静态网站托管已配置
+- [x] 云数据库集合（bookings、contacts、activities）已创建并配置安全规则
+- [x] activities 集合已创建（数据保持前端硬编码）
+- [x] 前端通过 CloudBase Web SDK 直连数据库（无需云函数中间层）
+- [x] 前端已安装 @cloudbase/js-sdk 并正确初始化（含匿名登录）
+- [x] API 调用封装层（src/lib/api.ts）已实现
+- [x] 预约表单包含姓名、手机号、拍摄类型、期望日期字段，带表单校验
+- [x] 预约提交成功后数据写入 bookings 集合
+- [x] 咨询表单包含姓名、手机号、咨询内容字段，带表单校验
+- [x] 咨询提交成功后数据写入 contacts 集合
+- [x] 活动数据保持前端硬编码（简化方案）
+- [x] 网站已部署到 CloudBase，可通过公网 URL 访问
+- [x] 搜索引擎可抓取到完整的页面内容和 meta 标签

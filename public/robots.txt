@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# GitHub Pages 部署后请将下方 Sitemap URL 修改为实际地址
+# 格式：https://YOUR_USERNAME.github.io/REPO_NAME/sitemap.xml
+Sitemap: https://YOUR_USERNAME.github.io/zehuai-image/sitemap.xml
