@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { styleImages, seasonImages } from "../lib/assets";
+import SmartImage from "./SmartImage";
 
 const styles = [
   { name: "新中式旗袍", keywords: ["温婉", "大气", "古典韵味"], audience: "喜欢东方美学的女性", gradient: "from-gold-500/20 to-vermilion-500/10" },
@@ -42,10 +44,13 @@ export default function StyleShowcase() {
               viewport={{ once: true }}
               className={`card-dark overflow-hidden ${i >= 3 ? "lg:col-span-1" : ""}`}
             >
-              {/* Placeholder image area */}
-              <div className={`h-48 bg-gradient-to-br ${s.gradient} flex items-center justify-center`}>
-                <span className="font-serif text-heading text-ink-400/60">{s.name}</span>
-              </div>
+              {/* 真实客片 */}
+              <SmartImage
+                src={styleImages[i].url}
+                alt={styleImages[i].alt}
+                className="h-48"
+                fallbackClassName={`bg-gradient-to-br ${s.gradient}`}
+              />
               <div className="p-5">
                 <h3 className="font-serif text-heading-sm text-ink-50">{s.name}</h3>
                 <div className="flex flex-wrap gap-2 mt-3">
@@ -64,11 +69,18 @@ export default function StyleShowcase() {
           <h3 className="font-serif text-heading text-ink-50 text-center">四季限定</h3>
           <div className="gold-line mx-auto mt-3" />
           <div className="flex gap-4 overflow-x-auto pb-4 mt-8 lg:overflow-visible lg:grid lg:grid-cols-4 scrollbar-hide">
-            {seasons.map((s) => (
-              <div key={s.name} className={`card-dark p-5 min-w-[240px] lg:min-w-0 border ${s.tint}`}>
-                <p className="font-serif text-heading-sm text-ink-50">{s.name}</p>
-                <p className="text-caption text-gold-400 mt-1">{s.time}</p>
-                <p className="text-body-sm text-ink-300 mt-2">{s.desc}</p>
+            {seasons.map((s, i) => (
+              <div key={s.name} className={`card-dark overflow-hidden min-w-[240px] lg:min-w-0 border ${s.tint}`}>
+                <SmartImage
+                  src={seasonImages[i].url}
+                  alt={seasonImages[i].alt}
+                  className="h-32"
+                />
+                <div className="p-5">
+                  <p className="font-serif text-heading-sm text-ink-50">{s.name}</p>
+                  <p className="text-caption text-gold-400 mt-1">{s.time}</p>
+                  <p className="text-body-sm text-ink-300 mt-2">{s.desc}</p>
+                </div>
               </div>
             ))}
           </div>
