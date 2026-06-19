@@ -2,9 +2,11 @@
 - [x] `vite.config.ts` 中不再依赖 `GITHUB_REPOSITORY` 和 `VITE_BASE` 环境变量
 - [x] `vercel.json` 已创建并配置 SPA 路由回退
 - [x] `.github/workflows/deploy.yml` 已删除或禁用
+- [x] `src/App.tsx` 的 `HashRouter` 已改为 `BrowserRouter`
+- [x] `index.html` 的 `og:url`、`canonical`、JSON-LD URL 已更新为 Vercel 域名
 - [x] 简历版技术文档中的部署方式已更新为 Vercel
 - [x] 旧 spec 文档中的部署描述已同步更新
 - [x] `npm run build` 可正常构建
 - [x] 构建产物中的资源引用路径以 `/` 为根
 - [x] `npm run lint` 无新增错误
-- [ ] 项目可在 Vercel 平台成功导入并自动部署（需用户在 Vercel 端完成导入）
+- [ ] 项目可在 Vercel 平台成功导入并自动部署（需用户在 Vercel 端完成导入，并 push 代码到 GitHub）
