@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { MapPin, Clock, MessageCircle, TreePine } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
+import { studioImages, locationImages } from "../lib/assets";
+import SmartImage from "./SmartImage";
 
 const locations = [
   { name: "西湖周边", style: "古典江南风", highlight: "杭州地标，经典取景地" },
@@ -32,26 +34,33 @@ export default function StudioInfo() {
 
         {/* Studio info card */}
         <motion.div
-          className="mt-12 card-dark p-8 max-w-xl"
+          className="mt-12 card-dark max-w-xl overflow-hidden"
           initial={{ opacity: 0, y: 24 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.15 }}
         >
-          <h3 className="font-serif text-heading text-ink-50">
-            泽怀影像 Studio
-          </h3>
-          <div className="mt-5 space-y-3 text-body-sm text-ink-200">
-            <div className="flex items-center gap-3">
-              <MapPin className="h-4 w-4 shrink-0 text-gold-500" />
-              <span>杭州市（具体地址待补充）</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <Clock className="h-4 w-4 shrink-0 text-gold-500" />
-              <span>10:00-20:00（需提前预约）</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <MessageCircle className="h-4 w-4 shrink-0 text-gold-500" />
-              <span>微信搜索小程序「泽怀影像」</span>
+          <SmartImage
+            src={studioImages.url}
+            alt={studioImages.alt}
+            className="h-48 w-full"
+          />
+          <div className="p-8">
+            <h3 className="font-serif text-heading text-ink-50">
+              泽怀影像 Studio
+            </h3>
+            <div className="mt-5 space-y-3 text-body-sm text-ink-200">
+              <div className="flex items-center gap-3">
+                <MapPin className="h-4 w-4 shrink-0 text-gold-500" />
+                <span>杭州市（具体地址待补充）</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Clock className="h-4 w-4 shrink-0 text-gold-500" />
+                <span>10:00-20:00（需提前预约）</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <MessageCircle className="h-4 w-4 shrink-0 text-gold-500" />
+                <span>微信搜索小程序「泽怀影像」</span>
+              </div>
             </div>
           </div>
         </motion.div>
@@ -66,19 +75,26 @@ export default function StudioInfo() {
           {locations.map((loc, i) => (
             <motion.div
               key={loc.name}
-              className="card-dark p-5"
+              className="card-dark overflow-hidden"
               initial={{ opacity: 0, y: 16 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.35 + 0.08 * i }}
             >
-              <div className="flex items-center gap-2">
-                <TreePine className="h-4 w-4 text-gold-500" />
-                <h4 className="font-serif text-heading-sm text-ink-50">
-                  {loc.name}
-                </h4>
+              <SmartImage
+                src={locationImages[i].url}
+                alt={locationImages[i].alt}
+                className="h-32 w-full"
+              />
+              <div className="p-5">
+                <div className="flex items-center gap-2">
+                  <TreePine className="h-4 w-4 text-gold-500" />
+                  <h4 className="font-serif text-heading-sm text-ink-50">
+                    {loc.name}
+                  </h4>
+                </div>
+                <p className="mt-2 text-body-sm text-gold-400">{loc.style}</p>
+                <p className="mt-1 text-body-sm text-ink-400">{loc.highlight}</p>
               </div>
-              <p className="mt-2 text-body-sm text-gold-400">{loc.style}</p>
-              <p className="mt-1 text-body-sm text-ink-400">{loc.highlight}</p>
             </motion.div>
           ))}
         </motion.div>

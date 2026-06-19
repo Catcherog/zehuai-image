@@ -1,5 +1,7 @@
 import { Camera, Sparkles, HeartHandshake, Database, BookOpen, Smartphone, HardDrive } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
+import { teamImages } from "../lib/assets";
+import SmartImage from "./SmartImage";
 
 const team = [
   { icon: Camera, title: "摄影师", desc: "全职专业团队，非外包兼职，擅长新中式/电影感风格，精通动作引导和情绪捕捉" },
@@ -33,11 +35,18 @@ export default function AboutSection() {
 
         {/* Team Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-          {team.map((t) => (
-            <div key={t.title} className="card-dark p-6 text-center">
-              <t.icon className="mx-auto text-gold-400" size={32} />
-              <h3 className="font-serif text-heading-sm text-ink-50 mt-4">{t.title}</h3>
-              <p className="text-body-sm text-ink-300 mt-2">{t.desc}</p>
+          {team.map((t, i) => (
+            <div key={t.title} className="card-dark overflow-hidden text-center">
+              <SmartImage
+                src={teamImages[i].url}
+                alt={teamImages[i].alt}
+                className="h-48 w-full"
+              />
+              <div className="p-6">
+                <t.icon className="mx-auto text-gold-400" size={32} />
+                <h3 className="font-serif text-heading-sm text-ink-50 mt-4">{t.title}</h3>
+                <p className="text-body-sm text-ink-300 mt-2">{t.desc}</p>
+              </div>
             </div>
           ))}
         </div>

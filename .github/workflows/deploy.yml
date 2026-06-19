@@ -1,8 +1,10 @@
+# 已停用：项目已迁移到 Vercel 托管，不再通过 push 到 main 触发 GitHub Pages 部署。
+# 保留 workflow_dispatch 以便在需要时手动触发。
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [main]
+  # push:
+  #   branches: [main]
   workflow_dispatch:
 
 permissions:

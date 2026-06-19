@@ -1,14 +1,15 @@
 import { useState } from "react";
-import { BookOpen, Video, PlayCircle, MessageCircle } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
+import { socialImages } from "../lib/assets";
 import BookingForm from "./BookingForm";
 import ContactForm from "./ContactForm";
+import SmartImage from "./SmartImage";
 
 const socials = [
-  { icon: BookOpen, platform: "小红书", account: "@泽怀影像", desc: "客片种草、拍摄攻略、调色教程" },
-  { icon: Video, platform: "抖音", account: "@泽怀影像", desc: "拍摄花絮、前后对比、幕后揭秘" },
-  { icon: PlayCircle, platform: "视频号", account: "@泽怀影像", desc: "拍摄幕后长视频、客片MV" },
-  { icon: MessageCircle, platform: "朋友圈", account: "@泽怀影像", desc: "当日客片速递、档期预告" },
+  { platform: "小红书", account: "@泽怀影像", desc: "客片种草、拍摄攻略、调色教程" },
+  { platform: "抖音", account: "@泽怀影像", desc: "拍摄花絮、前后对比、幕后揭秘" },
+  { platform: "视频号", account: "@泽怀影像", desc: "拍摄幕后长视频、客片MV" },
+  { platform: "朋友圈", account: "@泽怀影像", desc: "当日客片速递、档期预告" },
 ];
 
 const tags = ["#泽怀影像", "#杭州约拍", "#杭州写真", "#新中式写真", "#电影感"];
@@ -55,9 +56,13 @@ export default function ContactSection() {
 
         {/* Social Matrix */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16">
-          {socials.map((s) => (
+          {socials.map((s, i) => (
             <div key={s.platform} className="card-dark p-5 text-center">
-              <s.icon className="mx-auto text-gold-400" size={26} />
+              <SmartImage
+                src={socialImages[i].url}
+                alt={socialImages[i].alt}
+                className="h-32 w-32 mx-auto rounded-lg"
+              />
               <h4 className="font-serif text-heading-sm text-ink-50 mt-3">{s.platform}</h4>
               <p className="text-caption text-gold-400 mt-1">{s.account}</p>
               <p className="text-body-sm text-ink-300 mt-2">{s.desc}</p>

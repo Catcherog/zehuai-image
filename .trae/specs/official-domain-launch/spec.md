@@ -1,19 +1,20 @@
 # 官网域名与收录 Spec
 
 ## Why
-泽怀影像官网已部署到 CloudBase CDN 域名（`zeh-d7glqc07me2155c61-1421998063.tcloudbaseapp.com`），但该域名不可读、不可记忆、无法体现品牌，且搜索引擎收录效果差。需要注册专属域名、完成 ICP 备案、绑定自定义域名，并主动提交搜索引擎收录，使网站成为真正的品牌官网。
+泽怀影像官网前端已部署到 Vercel（`https://zehuai-image.vercel.app/`），CloudBase 仅用于后端数据服务与图片素材 CDN 加速。Vercel 默认域名不可读、不可记忆、无法体现品牌，且搜索引擎收录效果一般。需要注册专属域名、完成 ICP 备案、将自定义域名绑定到 Vercel，并主动提交搜索引擎收录，使网站成为真正的品牌官网。
 
 ## What Changes
 - 注册自定义域名（如 `zehuai-image.com` 或 `zehuai-image.cn`）
 - 完成 ICP 备案（中国大陆网站必须）
-- 将自定义域名绑定到 CloudBase 静态托管
+- 将自定义域名绑定到 GitHub Pages
+- 在仓库设置中配置自定义域名与 HTTPS
 - 更新代码中所有 URL 引用（sitemap.xml、robots.txt、index.html meta 标签）
 - 主动提交搜索引擎收录（百度、Google、Bing）
 - 添加百度统计代码，跟踪网站流量
 
 ## Impact
 - Affected specs: deploy-with-backend（在其基础上升级域名和收录）
-- Affected code: index.html、sitemap.xml、robots.txt、cloudbase.ts（可能需更新环境域名配置）
+- Affected code: index.html、sitemap.xml、robots.txt、vite.config.ts（可能需更新 base 路径配置）
 - 外部依赖: 域名注册商、ICP 备案流程、搜索引擎站长平台
 
 ---
@@ -21,14 +22,14 @@
 ## ADDED Requirements
 
 ### Requirement: 自定义域名
-系统 SHALL 使用自定义域名（如 `www.zehuai-image.com`）作为官网访问地址，替代 CloudBase CDN 默认域名。
+系统 SHALL 使用自定义域名（如 `www.zehuai-image.com`）作为官网访问地址，替代 GitHub Pages 默认域名（`catcherog.github.io/zehuai-image`）。
 
 #### Scenario: 用户通过自定义域名访问
 - **WHEN** 用户在浏览器输入 `www.zehuai-image.com`
 - **THEN** 页面正常加载，浏览器地址栏显示自定义域名，HTTPS 证书有效
 
-#### Scenario: 旧 CDN 域名自动跳转
-- **WHEN** 用户通过旧 CDN 域名访问
+#### Scenario: 旧 GitHub Pages 域名自动跳转
+- **WHEN** 用户通过旧 GitHub Pages 域名访问
 - **THEN** 自动 301 跳转到自定义域名
 
 ### Requirement: ICP 备案
@@ -50,7 +51,7 @@
 - **THEN** 官网出现在搜索结果中
 
 ### Requirement: URL 引用更新
-系统 SHALL 将代码中所有 CloudBase CDN 域名引用替换为自定义域名，包括 sitemap.xml、robots.txt、Open Graph 标签、JSON-LD 结构化数据。
+系统 SHALL 将代码中所有 GitHub Pages 默认域名引用替换为自定义域名，包括 sitemap.xml、robots.txt、Open Graph 标签、JSON-LD 结构化数据。CloudBase CDN 素材 URL 保持不变，仍由 CloudBase 加速分发。
 
 #### Scenario: sitemap 使用自定义域名
 - **WHEN** 搜索引擎爬虫访问 /sitemap.xml
@@ -66,4 +67,4 @@
 ## MODIFIED Requirements
 
 ### Requirement: SEO 优化
-在原 SEO 优化基础上，将所有 URL 引用从 CloudBase CDN 域名更新为自定义域名，并增加百度统计代码。
+在原 SEO 优化基础上，将所有页面 URL 引用从 Vercel 默认域名更新为自定义域名，并增加百度统计代码。CloudBase CDN 图片素材 URL 不受影响。

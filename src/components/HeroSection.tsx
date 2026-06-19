@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
+import { heroImages } from "@/lib/assets";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -13,6 +15,9 @@ export default function HeroSection() {
   const scrollToBrand = () => {
     document.getElementById("brand")?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const [imgError, setImgError] = useState(false);
 
   return (
     <section
@@ -29,8 +34,28 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Background gradient */}
+      {/* Background gradient (fallback when hero image fails to load) */}
       <div className="absolute inset-0 bg-gradient-to-b from-ink-950 via-ink-950/95 to-ink-900" />
+
+      {/* Hero main visual image - desktop uses heroImages.desktop, mobile uses heroImages.mobile */}
+      {!imgError && (
+        <picture>
+          <source media="(min-width: 768px)" srcSet={heroImages.desktop.url} />
+          <img
+            src={heroImages.mobile.url}
+            alt={heroImages.mobile.alt}
+            loading="eager"
+            onLoad={() => setImgLoaded(true)}
+            onError={() => setImgError(true)}
+            className={`absolute inset-0 z-[1] h-full w-full object-cover transition-opacity duration-700 ${
+              imgLoaded ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        </picture>
+      )}
+
+      {/* Semi-transparent overlay for text readability */}
+      <div className="absolute inset-0 z-[2] bg-ink-950/60" />
 
       {/* Left gold line */}
       <div className="absolute left-6 md:left-12 top-1/4 bottom-1/4 w-px bg-gradient-to-b from-transparent via-gold-500/40 to-transparent z-20" />
