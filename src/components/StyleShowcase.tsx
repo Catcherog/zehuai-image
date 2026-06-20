@@ -48,7 +48,7 @@ export default function StyleShowcase() {
               <SmartImage
                 src={styleImages[i].url}
                 alt={styleImages[i].alt}
-                className="h-48"
+                className="aspect-[4/3] w-full"
                 fallbackClassName={`bg-gradient-to-br ${s.gradient}`}
               />
               <div className="p-5">
@@ -74,7 +74,7 @@ export default function StyleShowcase() {
                 <SmartImage
                   src={seasonImages[i].url}
                   alt={seasonImages[i].alt}
-                  className="h-32"
+                  className="aspect-[4/3] w-full"
                 />
                 <div className="p-5">
                   <p className="font-serif text-heading-sm text-ink-50">{s.name}</p>
